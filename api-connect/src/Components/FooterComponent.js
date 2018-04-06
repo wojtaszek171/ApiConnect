@@ -10,7 +10,7 @@ class FooterComponent extends Component {
 
     render() {
         return (
-            <div className="footer">
+            <div className="footer navbar-inverse">
                 <div >
                     © 2018 Copyright: Paweł Wojtaszko
                 </div>

@@ -11,13 +11,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <NavComponent/>
             <content>
+                <NavComponent/>
 
 
-
+                <FooterComponent/>
             </content>
-          <FooterComponent/>
       </div>
     );
   }

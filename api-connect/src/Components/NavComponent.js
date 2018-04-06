@@ -5,6 +5,7 @@ import $ from 'jquery';
 import Calc from './Calc.js';
 import Wiki from './Wiki.js';
 import GMap from './Map.js';
+import Main from './Main.js'
 import './css/Nav.css'
 
 import {LinkContainer} from 'react-router-bootstrap';
@@ -51,7 +52,7 @@ class NavComponent extends Component {
                                     </div>
                                 </nav>
                               <div className="content">
-                                <Route exact path="/" component=""/>
+                                <Route exact path="/" component={Main}/>
                                 <Route path="/calc" component={Calc}/>
                                   <Route path="/wiki" component={Wiki}/>
                                   <Route path="/google-map" component={GMap}/>
