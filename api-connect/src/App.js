@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import {Route, NavLink, BrowserRouter} from "react-router-dom";
 import './App.css';
-import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
-import Calc from './Components/Calc.js';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import NavComponent from './Components/NavComponent.js'
+import NavComponent from './Components/NavComponent.js';
+import FooterComponent from './Components/FooterComponent.js';
 class App extends Component {
   handleSelect(eventKey) {
     //event.preventDefault();
@@ -15,9 +11,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <NavComponent/>
             <content>
-            <NavComponent/>
+
+
+
             </content>
+          <FooterComponent/>
       </div>
     );
   }

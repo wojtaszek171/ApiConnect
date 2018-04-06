@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Route, NavLink, BrowserRouter} from "react-router-dom";
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
 

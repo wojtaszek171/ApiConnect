@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Route, NavLink, BrowserRouter} from "react-router-dom";
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
+import ReactHtmlParser from 'react-html-parser';
 
 class Wiki extends Component {
 
@@ -34,37 +34,37 @@ class Wiki extends Component {
     }
 
     WikiContent(){
-        if(this.state.showDetails==true){
+        if(this.state.showDetails===true){
             var self = this;
             var response="";
-            $.ajax({
-                url: "https://"+this.state.lang+".wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles="+this.state.res[1][this.state.index]+"&rvprop=content",
-                dataType: 'jsonp',
-                success: function(data){
-                    console.log(data);
-                    response=data;
-                    for(var k in response.query.pages) {
-                        if(response.query.pages[k].revisions!="")
-                        {
-                            self.setState({title: response.query.pages[k].title});
-                            self.setState({content: response.query.pages[k].revisions[0]["*"]});
-                        }
-                        console.log(k, response.query.pages[k].revisions[0]["*"]);
+            if(self.state.title==='') {
+                $.ajax({
+                    url: "https://" + this.state.lang + ".wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=" + this.state.res[1][this.state.index] + "&rvprop=content",
+                    dataType: 'jsonp',
+                    success: function (data) {
+                        //console.log(data);
+                        response = data;
+                        for (var k in response.query.pages) {
+                            if (response.query.pages[k].revisions !== "") {
+                                self.setState({title: response.query.pages[k].title});
+                                self.setState({content: response.query.pages[k].extract});
+                            }
+                            //console.log(k, response.query.pages[k]);
 
+                        }
                     }
-                }
-            }).done(function(response) {
-                console.log(response);
-            });
-            return(<div id="wikiPage">
+                }).done(function (response) {
+                    //console.log(response);
+                });
+            }
+            return(<div id="wikiPage" style={{ textAlign: "left" }}>
                     <h3>{this.state.title}</h3>
-                    <p id="wikicontent">
-                        {this.state.content}
-                    </p>
+                        {ReactHtmlParser(this.state.content)}
                 </div>
-            )
+            );
         }else
         if(this.state.index!=null){
+            console.log("test");
             return (<div id="wikiPage">
                 {this.state.res[1].map((object, i) => <button value={i} onClick={this.setIndex}>{object}</button>)}
                 <h3>{this.state.res[1][this.state.index]}</h3>
@@ -86,18 +86,18 @@ class Wiki extends Component {
     getResult(){
         var searchFor = this.state.text;
         var response="";
-        console.log(searchFor);
+        //console.log(searchFor);
         var self = this;
         $.ajax({
             url: "https://"+this.state.lang+".wikipedia.org/w/api.php?action=opensearch&prop=revisions&search="+searchFor+"&limit=5",
             dataType: 'jsonp',
             success: function(data){
-                console.log(data);
+                //console.log(data);
                 response=data;
-                self.setState({res: data, index: null, showDetails: false});
+                self.setState({res: data, index: null, showDetails: false, title: ''});
             }
         }).done(function(response) {
-            console.log(response);
+            //console.log(response);
         });
     }
     SubmitHandler(e) {
@@ -123,7 +123,7 @@ class Wiki extends Component {
                 </select>
                 <input type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
                 <button onClick={this.getResult.bind(this)}>Szukaj</button>
-                <p>Wynik =  <p id="result"></p> </p>
+                <p id="result"></p>
                 {this.WikiContent()}
                 <h2 id="wiki_title"></h2>
                 <p id="wiki_content"></p>
