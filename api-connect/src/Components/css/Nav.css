@@ -3,17 +3,29 @@ nav a, nav a:hover, nav a:focus{
     text-decoration: none;
 }
 .container-fluid{
-    padding-left: 100px;
 }
-.footer{
+.footer {
     color: white;
-    position:absolute;
-    padding: 5px;
-    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    line-height: 3em;
 }
-.content{
+.content {
     min-height: 80vh;
+    height: 100%;
+    background: #eee;
+    margin-left: 40px;
+    margin-right:40px;
 }
 html, body{
     background-color: #eee;
+}
+.calc .form-control{
+    width: auto;
+    display: inline;
+}
+#page > div.content > div > div.map > div{
+    position: relative !important;
 }

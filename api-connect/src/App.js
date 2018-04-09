@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import 'jquery-ui-dist/jquery-ui';
 import NavComponent from './Components/NavComponent.js';
-import FooterComponent from './Components/FooterComponent.js';
 class App extends Component {
   handleSelect(eventKey) {
     //event.preventDefault();
@@ -15,7 +14,7 @@ class App extends Component {
                 <NavComponent/>
 
 
-                <FooterComponent/>
+
             </content>
       </div>
     );

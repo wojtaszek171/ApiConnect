@@ -66,18 +66,18 @@ class Wiki extends Component {
         if(this.state.index!=null){
             console.log("test");
             return (<div id="wikiPage">
-                {this.state.res[1].map((object, i) => <button value={i} onClick={this.setIndex}>{object}</button>)}
+                {this.state.res[1].map((object, i) => <button className="btn btn-default" value={i} onClick={this.setIndex}>{object}</button>)}
                 <h3>{this.state.res[1][this.state.index]}</h3>
                 <div id="wikicontent">
                     {this.state.res[2][this.state.index]}
-                    <button details="true" onClick={this.readMore}>more..</button>
+                    <button className="btn btn-default" details="true" onClick={this.readMore}>more..</button>
                 </div>
 
             </div>);
         }else
         if(this.state.res[1]!=null) {
             return (<div id="wikiPage">
-                {this.state.res[1].map((object, i) => <button value={i} onClick={this.setIndex}>{object}</button>)}
+                {this.state.res[1].map((object, i) => <button className="btn btn-default" value={i} onClick={this.setIndex}>{object}</button>)}
                 <h3></h3>
 
             </div>);
@@ -121,8 +121,8 @@ class Wiki extends Component {
                     <option value="pl" defaultChecked>pl</option>
                     <option value="en">en</option>
                 </select>
-                <input type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
-                <button onClick={this.getResult.bind(this)}>Szukaj</button>
+                <input placeholder="equation" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
+                <button className="btn btn-default" onClick={this.getResult.bind(this)}>Szukaj</button>
                 <p id="result"></p>
                 {this.WikiContent()}
                 <h2 id="wiki_title"></h2>

@@ -20,22 +20,21 @@ class MapCont extends Component {
 
     render() {
         return (
-            <div className="calc">
+            <div className="map" style={{ height: '400px', 'margin-bottom': '100px'}}>
                 <h2>Google Maps API v3</h2>
-                <div style={{'min-width': '400px', height: '400px'}}>
 
                     <Map style={{'max-height' : '500px'}}
                          google={this.props.google}
                          initialCenter={{
-                            lat: 51.2420707,
-                            lng: 22.5824587
+                            lat: 51.2353202,
+                            lng: 22.5440013
                             }}
                          zoom={10}>
 
                         <Marker
                             title={'Tutaj mieszkam'}
                             name={'Lublin'}
-                            position={{lat: 51.2420707, lng: 22.5824587}} />
+                            position={{lat: 51.2353202, lng: 22.5440013}} />
 
                         <InfoWindow onClose={this.onInfoWindowClose}>
                             <div>
@@ -44,7 +43,6 @@ class MapCont extends Component {
                         </InfoWindow>
                     </Map>
                 </div>
-            </div>
         );
     }
 

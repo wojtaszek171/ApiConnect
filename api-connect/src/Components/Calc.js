@@ -33,9 +33,10 @@ class Calc extends Component {
           <h2>Calcatraz API</h2>  (PROBLEMS WITH CORS) <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi">chrome extension</a> needed
 
             <p>Input equation</p>
-            <input type="text" name="equation" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
-            <button onClick={this.getResult.bind(this)}>Count</button>
-        <p>Wynik =  <p id="result"></p> </p>
+            <input placeholder="equation" className="form-control" type="text" name="equation" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
+            <button className="btn btn-default" onClick={this.getResult.bind(this)}>Count</button>
+
+        <p>Result =  <p id="result"></p> </p>
       </div>
     );
   }

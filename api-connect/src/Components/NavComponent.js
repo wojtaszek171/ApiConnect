@@ -8,9 +8,7 @@ import GMap from './Map.js';
 import Main from './Main.js'
 import './css/Nav.css'
 
-import {LinkContainer} from 'react-router-bootstrap';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
-
+import FooterComponent from './FooterComponent.js';
 class NavComponent extends Component {
 
     componentDidMount(){
@@ -24,9 +22,8 @@ class NavComponent extends Component {
     }
   render() {
     return (
-      <div>
                   <BrowserRouter>
-                            <div>
+                            <div id="page">
                                 <nav className="navbar navbar-default navbar-inverse">
                                     <div className="container-fluid">
 
@@ -57,10 +54,11 @@ class NavComponent extends Component {
                                   <Route path="/wiki" component={Wiki}/>
                                   <Route path="/google-map" component={GMap}/>
                               </div>
+                                <FooterComponent/>
                             </div>
+
                   </BrowserRouter>
-      </div>
-    );
+        );
   }
 }
 
