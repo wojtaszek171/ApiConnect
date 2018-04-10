@@ -85,7 +85,6 @@ class Wiki extends Component {
     }
     getResult(){
         var searchFor = this.state.text;
-        var response="";
         //console.log(searchFor);
         var self = this;
         $.ajax({
@@ -93,7 +92,6 @@ class Wiki extends Component {
             dataType: 'jsonp',
             success: function(data){
                 //console.log(data);
-                response=data;
                 self.setState({res: data, index: null, showDetails: false, title: ''});
             }
         }).done(function(response) {

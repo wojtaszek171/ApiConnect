@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
-import ReactHtmlParser from 'react-html-parser';
 var loader = require('./ajaxloader.gif');
 
 class Chuck extends Component {
@@ -36,7 +35,7 @@ class Chuck extends Component {
                 var filtered = [];
                 //console.log(data.result);
                 var e = document.getElementById('categories');
-                if(e.options[e.selectedIndex].value!='all'){
+                if(e.options[e.selectedIndex].value!=='all'){
                     for (var i=0; i<data.result.length; i++){
                         if(data.result[i]['category'] != null) {
                             if(data.result[i]['category'][0] === e.options[e.selectedIndex].value)
@@ -72,7 +71,7 @@ class Chuck extends Component {
             if (document.getElementById('paginator').checked) {
                 return (
                     <div>
-                        <p><div style={{'height':'100%'}}><img src={data[0]['icon_url']} alt='chuck'/></div> {data[self.state.page]['value']} </p>
+                        <p><div style={{'height':'100%'}}><img src={data[0]['icon_url']} alt='chucknorris'/></div> {data[self.state.page]['value']} </p>
                         <div id='navigator'>
                             {this.state.page>0 ? <button className='form-control' onClick={function () {self.setState({page : self.state.page - 1});}}> PREV </button> : <button disabled className='form-control' onClick={function () {self.setState({page : self.state.page - 1});}}> PREV </button>}
                             <span>{this.state.page+1}/{data.length}</span>
@@ -153,7 +152,7 @@ class Chuck extends Component {
                 //console.log(data);
                 var array = [];
                 array.push(data);
-                self.setState({data : array});
+                self.setState({ page: 0, data : array});
             }
         }).done(function(response) {
 
