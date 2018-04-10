@@ -117,11 +117,11 @@ class Wiki extends Component {
                 <h2>Wikipedia API</h2>
 
                 <p>Input:</p>
-                <select name="selector" id="selector" onChange={this.SelectHandler} onSelect={this.SelectHandler}>
+                <select class="form-control" name="selector" id="selector" onChange={this.SelectHandler} onSelect={this.SelectHandler}>
                     <option value="pl" defaultChecked>pl</option>
                     <option value="en">en</option>
                 </select>
-                <input placeholder="equation" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
+                <input placeholder="text" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
                 <button className="btn btn-default" onClick={this.getResult.bind(this)}>Szukaj</button>
                 <p id="result"></p>
                 {this.WikiContent()}

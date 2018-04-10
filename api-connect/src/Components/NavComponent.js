@@ -5,7 +5,8 @@ import $ from 'jquery';
 import Calc from './Calc.js';
 import Wiki from './Wiki.js';
 import GMap from './Map.js';
-import Main from './Main.js'
+import Main from './Main.js';
+import Chuck from './Chuck.js';
 import './css/Nav.css'
 
 import FooterComponent from './FooterComponent.js';
@@ -44,6 +45,7 @@ class NavComponent extends Component {
                                                 <li><NavLink to="/calc"><a href="#">Calcatraz API</a></NavLink></li>
                                                 <li><NavLink to="/wiki"><a href="#">Wikipedia API</a></NavLink></li>
                                                 <li><NavLink to="/google-map"><a href="#">Google Maps API</a></NavLink></li>
+                                                <li><NavLink to="/chuck"><a href="#">Chuck API</a></NavLink></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -53,6 +55,7 @@ class NavComponent extends Component {
                                 <Route path="/calc" component={Calc}/>
                                   <Route path="/wiki" component={Wiki}/>
                                   <Route path="/google-map" component={GMap}/>
+                                  <Route path="/chuck" component={Chuck}/>
                               </div>
                                 <FooterComponent/>
                             </div>
