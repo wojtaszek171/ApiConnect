@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
 import ReactHtmlParser from 'react-html-parser';
+var loader = require('./ajaxloader.gif');
 
 class Chuck extends Component {
 
@@ -15,6 +16,7 @@ class Chuck extends Component {
 
         this.SubmitHandler = this.SubmitHandler.bind(this);
         this.returnAllJokes = this.returnAllJokes.bind(this);
+        this.getRandom = this.getRandom.bind(this);
     }
 
     componentDidMount() {
@@ -24,14 +26,15 @@ class Chuck extends Component {
     getResult(){
         this.setState({page : 0, data :[]});
         var searchFor = this.state.text;
-        console.log(searchFor);
+        //console.log(searchFor);
         var self = this;
+        $('#loading-image').show();
         $.ajax({
             url: "https://api.chucknorris.io/jokes/search?query="+searchFor,
             dataType: 'json',
             success: function(data){
                 var filtered = [];
-                console.log(data.result);
+                //console.log(data.result);
                 var e = document.getElementById('categories');
                 if(e.options[e.selectedIndex].value!='all'){
                     for (var i=0; i<data.result.length; i++){
@@ -45,7 +48,10 @@ class Chuck extends Component {
                     filtered = data.result;
                 }
                 self.setState({data : filtered});
-                console.log(filtered);
+                //console.log(filtered);
+            },
+            complete: function () {
+                $('#loading-image').hide();
             }
         }).done(function(response) {
 
@@ -97,10 +103,11 @@ class Chuck extends Component {
                     {this.getCategories()}
                 </select>
                 <input placeholder="search" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
-                <button className="btn btn-default" onClick={this.getResult.bind(this)}>Szukaj</button>
+                <button className="btn btn-default" onClick={this.getResult.bind(this)}>Search</button><button className="btn btn-default" onClick={this.getRandom}>Random</button>
                 <div><input type='checkbox' className='' onChange={event => {this.setState({page : 0})}} id='paginator'/><label className='' htmlFor="paginator">Enable
                     paginator</label></div>
                 <p id="result">
+                    <img id='loading-image' hidden src={loader}/>
                 {this.returnAllJokes()}
                 </p>
             </div>
@@ -115,7 +122,7 @@ class Chuck extends Component {
             url: "https://api.chucknorris.io/jokes/categories",
             dataType: 'json',
             success: function(data){
-                console.log(data);
+                //console.log(data);
                 categories = data;
                 $('#categories').append($('<option>', {
                     value: 'all',
@@ -134,6 +141,23 @@ class Chuck extends Component {
 
         });
 
+    }
+
+    getRandom() {
+        var self = this;
+        var categories = [];
+        $.ajax({
+            url: "https://api.chucknorris.io/jokes/random",
+            dataType: 'json',
+            success: function(data){
+                //console.log(data);
+                var array = [];
+                array.push(data);
+                self.setState({data : array});
+            }
+        }).done(function(response) {
+
+        });
     }
 }
 

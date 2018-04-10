@@ -41,8 +41,8 @@
       <file leaf-file-name="Chuck.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Chuck.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+            <state relative-caret-position="391">
+              <caret line="156" column="13" lean-forward="true" selection-start-line="156" selection-start-column="13" selection-end-line="156" selection-end-column="13" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -143,6 +143,8 @@
       <find>this.setstate</find>
       <find>img</find>
       <find>LEFT</find>
+      <find>console.log</find>
+      <find>4</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Repository\ApiConnect\api-connect\src</dir>
@@ -236,6 +238,9 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Repository\ApiConnect\api-connect\src\Components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Repository\ApiConnect\api-connect\build" />
     </key>
@@ -276,12 +281,12 @@
       <workItem from="1522910379695" duration="9628000" />
       <workItem from="1522995479720" duration="9851000" />
       <workItem from="1523250571161" duration="9163000" />
-      <workItem from="1523340442375" duration="14737000" />
+      <workItem from="1523340442375" duration="17770000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69310000" />
+    <option name="totallyTimeSpent" value="72343000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -725,8 +730,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Chuck.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+        <state relative-caret-position="391">
+          <caret line="156" column="13" lean-forward="true" selection-start-line="156" selection-start-column="13" selection-end-line="156" selection-end-column="13" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
