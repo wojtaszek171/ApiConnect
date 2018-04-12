@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import 'jquery-ui-dist/jquery-ui';
-var loader = require('./ajaxloader.gif');
 
+var loader = require('./ajaxloader.gif');
 class Chuck extends Component {
 
     constructor(props) {
@@ -12,7 +11,6 @@ class Chuck extends Component {
             page: 0,
             category: ''
         };
-
         this.SubmitHandler = this.SubmitHandler.bind(this);
         this.returnAllJokes = this.returnAllJokes.bind(this);
         this.getRandom = this.getRandom.bind(this);
@@ -25,7 +23,6 @@ class Chuck extends Component {
     getResult(){
         this.setState({page : 0, data :[]});
         var searchFor = this.state.text;
-        //console.log(searchFor);
         var self = this;
         $('#loading-image').show();
         $.ajax({
@@ -33,21 +30,18 @@ class Chuck extends Component {
             dataType: 'json',
             success: function(data){
                 var filtered = [];
-                //console.log(data.result);
                 var e = document.getElementById('categories');
                 if(e.options[e.selectedIndex].value!=='all'){
                     for (var i=0; i<data.result.length; i++){
                         if(data.result[i]['category'] != null) {
                             if(data.result[i]['category'][0] === e.options[e.selectedIndex].value)
                              filtered.push(data.result[i]);
-                            //console.log(data.result[i]['category'][0])
                         }
                     }
                 }else{
                     filtered = data.result;
                 }
                 self.setState({data : filtered});
-                //console.log(filtered);
             },
             complete: function () {
                 $('#loading-image').hide();
