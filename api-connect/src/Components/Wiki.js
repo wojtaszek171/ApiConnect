@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import 'jquery-ui-dist/jquery-ui';
 import ReactHtmlParser from 'react-html-parser';
 
 class Wiki extends Component {

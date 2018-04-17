@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'jquery-ui-dist/jquery-ui';
 
 import './css/Nav.css'
 

@@ -1,40 +1,29 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Chuck from "./Components/Chuck";
+import NavComponent from "./Components/NavComponent";
 import { mount, shallow } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
+global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 var $ = require('jquery') ;
 
-
-
 test('Chuck render',async () => {
-    let props;
-    let mountedChuck;
+
     const doneChange = jest.fn();
     const wrapper = shallow(
-        <Chuck doneChange={doneChange} />
-    );
-   beforeEach(() =>{
-        props = {
-
-        };
-       mountedChuck = undefined;
-    });
+        <Chuck />);
 
         var text = wrapper.find("#searchinput");
         const categories = wrapper.find("#categories");
          text.simulate("change", {target:{value:"chucki"}});
          expect(wrapper.state().text).toEqual('chucki');
          wrapper.find('#search').simulate('click');
-         wrapper.setState({ text: 'chuck' });
-        expect(wrapper.state().text).toEqual('chuck');
-        try {
+         wrapper.setState({ text: 'test' });
 
-        } catch (e) {
-            console.log(e);
 
-        }
+        expect(wrapper.state().text).toEqual('test');
 
-         await console.log(wrapper.state());
+         const datas = await wrapper.instance().getResult();
+         console.log(datas);
 });

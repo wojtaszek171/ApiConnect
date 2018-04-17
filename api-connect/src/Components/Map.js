@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'jquery-ui-dist/jquery-ui';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 class MapCont extends Component {
 
