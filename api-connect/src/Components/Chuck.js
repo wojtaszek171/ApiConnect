@@ -9,15 +9,20 @@ class Chuck extends Component {
         this.state = {
             data: [],
             page: 0,
-            category: ''
+            category: '',
+            text: ''
         };
         this.SubmitHandler = this.SubmitHandler.bind(this);
         this.returnAllJokes = this.returnAllJokes.bind(this);
         this.getRandom = this.getRandom.bind(this);
+        this.getData = this.getData.bind(this);
     }
 
     componentDidMount() {
 
+    }
+    getData(){
+        return this.state.data;
     }
 
     getResult(){
@@ -95,8 +100,8 @@ class Chuck extends Component {
                 <select className='form-control' id='categories'>
                     {this.getCategories()}
                 </select>
-                <input placeholder="search" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
-                <button className="btn btn-default" onClick={this.getResult.bind(this)}>Search</button><button className="btn btn-default" onClick={this.getRandom}>Random</button>
+                <input id="searchinput" placeholder="search" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
+                <button id="search" className="btn btn-default" onClick={this.getResult.bind(this)}>Search</button><button className="btn btn-default" onClick={this.getRandom}>Random</button>
                 <div><input type='checkbox' className='' onChange={event => {this.setState({page : 0})}} id='paginator'/><label className='' htmlFor="paginator">Enable
                     paginator</label></div>
                 <p id="result">
