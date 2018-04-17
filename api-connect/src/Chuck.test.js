@@ -4,7 +4,7 @@ import Chuck from "./Components/Chuck";
 import NavComponent from "./Components/NavComponent";
 import { mount, shallow } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
-global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+import chuckApi from "./services/chuck";
 
 var $ = require('jquery') ;
 
@@ -18,12 +18,12 @@ test('Chuck render',async () => {
         const categories = wrapper.find("#categories");
          text.simulate("change", {target:{value:"chucki"}});
          expect(wrapper.state().text).toEqual('chucki');
-         wrapper.find('#search').simulate('click');
-         wrapper.setState({ text: 'test' });
+         //wrapper.find('#search').simulate('click');
+        jest.setTimeout(10000);
+        const datas = await chuckApi('chuck');
+        console.log(datas.result.length);
+        expect(datas.result.length).toBeGreaterThan(160);
+        jest.setTimeout(5000);
 
 
-        expect(wrapper.state().text).toEqual('test');
-
-         const datas = await wrapper.instance().getResult();
-         console.log(datas);
 });

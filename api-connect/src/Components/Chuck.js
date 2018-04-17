@@ -10,7 +10,7 @@ class Chuck extends Component {
         this.state = {
             data: [],
             page: 0,
-            category: '',
+            category: 'all',
             text: ''
         };
         this.SubmitHandler = this.SubmitHandler.bind(this);
@@ -18,6 +18,7 @@ class Chuck extends Component {
         this.getRandom = this.getRandom.bind(this);
         this.getData = this.getData.bind(this);
         this.getResult = this.getResult.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -26,7 +27,9 @@ class Chuck extends Component {
     getData(){
         return this.state.data;
     }
-
+    handleChange(e){
+        this.setState({category:e.target.value});
+    }
     getResult = async () =>{
         this.setState({page : 0, data :[]});
         var searchFor = this.state.text;
@@ -37,10 +40,10 @@ class Chuck extends Component {
             const datas = await chuck(searchFor);
             var filtered = [];
                 var e = document.getElementById('categories');
-                if(e.options[e.selectedIndex].value!=='all'){
+                if(this.state.category!=='all'){
                     for (var i=0; i<datas.result.length; i++){
                         if(datas.result[i]['category'] != null) {
-                            if(datas.result[i]['category'][0] === e.options[e.selectedIndex].value)
+                            if(datas.result[i]['category'][0] === this.state.category)
                                 filtered.push(datas.result[i]);
                         }
                     }
@@ -97,7 +100,7 @@ class Chuck extends Component {
                 <h2>Chuck Norris API</h2>
 
                 <p>Search for jokes:</p>
-                <select className='form-control' id='categories'>
+                <select className='form-control' id='categories' value={this.state.category} onChange={this.handleChange} >
                     {this.getCategories()}
                 </select>
                 <input id="searchinput" placeholder="search" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
@@ -114,31 +117,33 @@ class Chuck extends Component {
 
 
     getCategories() {
-        var self = this;
-        var categories = [];
-        $.ajax({
-            url: "https://api.chucknorris.io/jokes/categories",
-            dataType: 'json',
-            success: function(data){
-                //console.log(data);
-                categories = data;
-                $('#categories').append($('<option>', {
-                    value: 'all',
-                    text: 'all'
-                }));
-                return(
-                    categories.map(value => {
-                        $('#categories').append($('<option>', {
-                            value: value,
-                            text: value
-                        }));
-                    })
-                )
-            }
-        }).done(function(response) {
+        var length = $('#categories').children('option').length;
+        if(length==0) {
+            var self = this;
+            var categories = [];
+            $.ajax({
+                url: "https://api.chucknorris.io/jokes/categories",
+                dataType: 'json',
+                success: function (data) {
+                    //console.log(data);
+                    categories = data;
+                    $('#categories').append($('<option>', {
+                        value: 'all',
+                        text: 'all'
+                    }));
+                    return (
+                        categories.map(value => {
+                            $('#categories').append($('<option>', {
+                                value: value,
+                                text: value
+                            }));
+                        })
+                    )
+                }
+            }).done(function (response) {
 
-        });
-
+            });
+        }
     }
 
     getRandom() {
