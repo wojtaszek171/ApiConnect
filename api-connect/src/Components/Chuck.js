@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import chuck from '../services/chuck';
 
 var loader = require('./ajaxloader.gif');
 class Chuck extends Component {
@@ -16,6 +17,7 @@ class Chuck extends Component {
         this.returnAllJokes = this.returnAllJokes.bind(this);
         this.getRandom = this.getRandom.bind(this);
         this.getData = this.getData.bind(this);
+        this.getResult = this.getResult.bind(this);
     }
 
     componentDidMount() {
@@ -25,35 +27,33 @@ class Chuck extends Component {
         return this.state.data;
     }
 
-    getResult(){
+    getResult = async () =>{
         this.setState({page : 0, data :[]});
         var searchFor = this.state.text;
+
         var self = this;
-        $('#loading-image').show();
-        $.ajax({
-            url: "https://api.chucknorris.io/jokes/search?query="+searchFor,
-            dataType: 'json',
-            success: function(data){
-                var filtered = [];
+        try {
+            $('#loading-image').show();
+            const datas = await chuck(searchFor);
+            var filtered = [];
                 var e = document.getElementById('categories');
                 if(e.options[e.selectedIndex].value!=='all'){
-                    for (var i=0; i<data.result.length; i++){
-                        if(data.result[i]['category'] != null) {
-                            if(data.result[i]['category'][0] === e.options[e.selectedIndex].value)
-                             filtered.push(data.result[i]);
+                    for (var i=0; i<datas.result.length; i++){
+                        if(datas.result[i]['category'] != null) {
+                            if(datas.result[i]['category'][0] === e.options[e.selectedIndex].value)
+                                filtered.push(datas.result[i]);
                         }
                     }
                 }else{
-                    filtered = data.result;
+                    filtered = datas.result;
                 }
-                self.setState({data : filtered});
-            },
-            complete: function () {
-                $('#loading-image').hide();
-            }
-        }).done(function(response) {
+            self.setState({data : filtered});
+            console.log(self.state.data);
 
-        });
+        }catch (e) {
+            console.log(e);
+        }
+
     }
 
     SubmitHandler(e) {
