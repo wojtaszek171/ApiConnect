@@ -11,7 +11,7 @@ jest.unmock('jquery');  //jquery unmocked - internet connection needed
 var $ = require('jquery') ;
 
 
-describe('Chuck render',async () => {
+test('Chuck render',async () => {
 
     const doneChange = jest.fn();
     const wrapper = shallow(
@@ -25,7 +25,7 @@ describe('Chuck render',async () => {
 
 });
 
-describe('Chuck api response', async () => {
+test('Chuck api response and proper display jokes', async () => {
     const wrapper = shallow(
         <Chuck />);
     jest.setTimeout(20000);
@@ -33,13 +33,33 @@ describe('Chuck api response', async () => {
     console.log(datas.result.length + " results");
     expect(datas.result.length).toBeGreaterThan(0);
     jest.setTimeout(5000);
-    wrapper.setState({data : datas});
+    wrapper.setState({data : datas, page: 0, category: 'all', text: 'aaa'});
     var pag = wrapper.find('#paginator');
     expect(pag.is('[checked]')).toBe(false);
     // pag.simulate('change',{target: {checked: true}});
     // expect(pag.is('[checked]')).toBe(true);
+    //console.log(wrapper.state());
     const p = wrapper.find('#result');
-    //expect(p.find(p).exists()).toEqual(true);
+    //console.log(p.find('p'));
+    expect(p.find('p').exists()).toEqual(true);
+});
+
+test('Chuck api paginator test', async () => {
+    const wrapper = shallow(
+        <Chuck />);
+    jest.setTimeout(20000);
+    const datas = await chuckApi('aaa');
+    //console.log(datas.result.length + " results");
+    expect(datas.result.length).toBeGreaterThan(0);
+    jest.setTimeout(5000);
+    wrapper.setState({data : datas, page: 0, category: 'all', text: 'aaa', paginator : true});
+    expect(wrapper.state().paginator).toBe(true);
+    const nextButton = wrapper.find('#next');
+    //nextButton.simulate('click');
+    //expect(wrapper.state().page).toBe(1);
+    console.log(nextButton.exists());
+    var pag = wrapper.find('#paginator');
+
 });
 
 expect.addSnapshotSerializer(serializer);
@@ -47,7 +67,7 @@ expect.addSnapshotSerializer(serializer);
 describe('Popup', () => {
     it('renders without crashing', () => {
         expect.hasAssertions();
-        expect.assertions(2);
+        expect.assertions(1);
 
         const popup = shallow(<Chuck />);
 

@@ -11,7 +11,8 @@ class Chuck extends Component {
             data: [],
             page: 0,
             category: 'all',
-            text: ''
+            text: '',
+            paginator : false
         };
         this.SubmitHandler = this.SubmitHandler.bind(this);
         this.returnAllJokes = this.returnAllJokes.bind(this);
@@ -70,14 +71,14 @@ class Chuck extends Component {
         var data = this.state.data;
         var self = this;
         if(data.length>0) {
-            if (document.getElementById('paginator').checked) {
+            if (self.state.paginator===true) {
                 return (
                     <div>
                         <p><div style={{'height':'100%'}}><img src={data[0]['icon_url']} alt='chucknorris'/></div> {data[self.state.page]['value']} </p>
                         <div id='navigator'>
-                            {this.state.page>0 ? <button className='form-control' onClick={function () {self.setState({page : self.state.page - 1});}}> PREV </button> : <button disabled className='form-control' onClick={function () {self.setState({page : self.state.page - 1});}}> PREV </button>}
+                            {this.state.page>0 ? <button  id='prev' className='form-control' onClick={function () {self.setState({page : self.state.page - 1});}}> PREV </button> : <button id='prev' disabled className='form-control' onClick={function () {self.setState({page : self.state.page - 1});}}> PREV </button>}
                             <span>{this.state.page+1}/{data.length}</span>
-                            {this.state.page<data.length -1 ? <button className='form-control' onClick={function () {self.setState({page : self.state.page + 1});}}> NEXT </button> : <button disabled className='form-control' onClick={function () {self.setState({page : self.state.page + 1});}}> NEXT </button>}
+                            {this.state.page<data.length -1 ? <button id='next' className='form-control' onClick={function () {self.setState({page : self.state.page + 1});}}> NEXT </button> : <button id='next' disabled className='form-control' onClick={function () {self.setState({page : self.state.page + 1});}}> NEXT </button>}
                         </div>
                     </div>
                 );
@@ -105,7 +106,7 @@ class Chuck extends Component {
                 </select>
                 <input id="searchinput" placeholder="search" className="form-control" type="text" name="text" onKeyDown={this.SubmitHandler} onChange={this.SubmitHandler}/>
                 <button id="search" className="btn btn-default" onClick={this.getResult.bind(this)}>Search</button><button className="btn btn-default" onClick={this.getRandom}>Random</button>
-                <div><input type='checkbox' className='' onChange={event => {this.setState({page : 0})}} id='paginator'/><label className='' htmlFor="paginator">Enable
+                <div><input type='checkbox' className='' onChange={event => {this.setState({page : 0}); if(this.state.paginator===true){this.setState({paginator : false});}else{this.setState({paginator : true});}}} id='paginator'/><label className='' htmlFor="paginator">Enable
                     paginator</label></div>
                 <p id="result">
                     <img id='loading-image' hidden src={loader}/>
