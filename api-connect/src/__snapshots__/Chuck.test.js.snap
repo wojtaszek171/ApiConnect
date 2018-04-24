@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup renders without crashing 1`] = `
+<div
+  className="calc"
+>
+  <h2>
+    Chuck Norris API
+  </h2>
+  <p>
+    Search for jokes:
+  </p>
+  <select
+    className="form-control"
+    id="categories"
+    onChange={[Function]}
+    value="all"
+  />
+  <input
+    className="form-control"
+    id="searchinput"
+    name="text"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="search"
+    type="text"
+  />
+  <button
+    className="btn btn-default"
+    id="search"
+    onClick={[Function]}
+  >
+    Search
+  </button>
+  <button
+    className="btn btn-default"
+    onClick={[Function]}
+  >
+    Random
+  </button>
+  <div>
+    <input
+      className=""
+      id="paginator"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className=""
+      htmlFor="paginator"
+    >
+      Enable paginator
+    </label>
+  </div>
+  <p
+    id="result"
+  >
+    <img
+      hidden={true}
+      id="loading-image"
+      src="ajaxloader.gif"
+    />
+  </p>
+</div>
+`;

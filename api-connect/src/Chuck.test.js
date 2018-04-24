@@ -5,12 +5,13 @@ import NavComponent from "./Components/NavComponent";
 import { mount, shallow } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
 import chuckApi from "./services/chuck";
+import serializer from 'enzyme-to-json/serializer';
 
 jest.unmock('jquery');  //jquery unmocked - internet connection needed
-
 var $ = require('jquery') ;
 
-test('Chuck render',async () => {
+
+describe('Chuck render',async () => {
 
     const doneChange = jest.fn();
     const wrapper = shallow(
@@ -24,7 +25,7 @@ test('Chuck render',async () => {
 
 });
 
-test('Chuck api response', async () => {
+describe('Chuck api response', async () => {
     const wrapper = shallow(
         <Chuck />);
     jest.setTimeout(20000);
@@ -39,4 +40,17 @@ test('Chuck api response', async () => {
     // expect(pag.is('[checked]')).toBe(true);
     const p = wrapper.find('#result');
     //expect(p.find(p).exists()).toEqual(true);
+});
+
+expect.addSnapshotSerializer(serializer);
+
+describe('Popup', () => {
+    it('renders without crashing', () => {
+        expect.hasAssertions();
+        expect.assertions(2);
+
+        const popup = shallow(<Chuck />);
+
+        expect(popup).toMatchSnapshot();
+    });
 });
