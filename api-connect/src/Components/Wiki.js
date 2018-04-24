@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import ReactHtmlParser from 'react-html-parser';
+import wikiComp from '../services/wiki';
 
 class Wiki extends Component {
 
@@ -82,20 +83,13 @@ class Wiki extends Component {
             </div>);
         }
     }
-    getResult(){
+    async getResult(){
         var searchFor = this.state.text;
         //console.log(searchFor);
         var self = this;
-        $.ajax({
-            url: "https://"+this.state.lang+".wikipedia.org/w/api.php?action=opensearch&prop=revisions&search="+searchFor+"&limit=5",
-            dataType: 'jsonp',
-            success: function(data){
-                //console.log(data);
-                self.setState({res: data, index: null, showDetails: false, title: ''});
-            }
-        }).done(function(response) {
-            //console.log(response);
-        });
+        var datas = await  wikiComp(self.state.lang, searchFor);
+        console.log(datas);
+        self.setState({res: datas, index: null, showDetails: false, title: ''});
     }
     SubmitHandler(e) {
         if(e.keyCode===13){

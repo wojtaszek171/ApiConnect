@@ -6,6 +6,8 @@ import { mount, shallow } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
 import chuckApi from "./services/chuck";
 
+jest.unmock('jquery');  //jquery unmocked - internet connection needed
+
 var $ = require('jquery') ;
 
 test('Chuck render',async () => {
@@ -19,11 +21,22 @@ test('Chuck render',async () => {
          text.simulate("change", {target:{value:"chucki"}});
          expect(wrapper.state().text).toEqual('chucki');
          //wrapper.find('#search').simulate('click');
-        jest.setTimeout(10000);
-        const datas = await chuckApi('chuck');
-        console.log(datas.result.length);
-        expect(datas.result.length).toBeGreaterThan(160);
-        jest.setTimeout(5000);
 
+});
 
+test('Chuck api response', async () => {
+    const wrapper = shallow(
+        <Chuck />);
+    jest.setTimeout(20000);
+    const datas = await chuckApi('aaa');
+    console.log(datas.result.length + " results");
+    expect(datas.result.length).toBeGreaterThan(0);
+    jest.setTimeout(5000);
+    wrapper.setState({data : datas});
+    var pag = wrapper.find('#paginator');
+    expect(pag.is('[checked]')).toBe(false);
+    // pag.simulate('change',{target: {checked: true}});
+    // expect(pag.is('[checked]')).toBe(true);
+    const p = wrapper.find('#result');
+    //expect(p.find(p).exists()).toEqual(true);
 });
