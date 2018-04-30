@@ -25,12 +25,7 @@ class Board extends Component {
             ]
         };
     }
-    componentWillMount(){
-        window.addEventListener('keydown', this._handleKeyDown, false);
-    }
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this._handleKeyDown, false);
-    }
+
     componentDidMount() {
         this.setState({matrix : this.props.newMatrix});
         this.renderMatrix = this.renderMatrix.bind(this);
@@ -39,41 +34,29 @@ class Board extends Component {
         this.setState({
             matrix : newProps.newMatrix
         });
-        console.log("updateBoard");
+        //console.log("updateBoard");
     }
 
-    _handleKeyDown(event){
-        //console.log(event.keyCode);
-        switch( event.keyCode ) {
-            case 37:
-                console.log("LEFT");
-                break;
-            case 38:
-                console.log("UP");
-                break;
-            case 39:
-                console.log("RIGHT");
-                break;
-            case 40:
-                console.log("DOWN");
-                break;
-            default:
-                break;
-    }
-    }
+
 
 
 
     renderMatrix(){
-        console.log("rematrix");
-        console.log(this.state.matrix);
+        //console.log("rematrix");
+        //console.log(this.state.matrix);
         var matrix = this.state.matrix;
         var result = "<table style='text-align: center;'>";
             for(var i=0; i<matrix.length; i++){
                 result += "<tr>";
                 var array = matrix[i];
                 for(var j=0; j< matrix[i].length; j++){
-                    result += "<td style='width: 30px; height: 30px; line-height: 30px; text-align: center'>"+matrix[i][j]+"</td>";
+                    var element;
+                    if(matrix[i][j]===0)
+                        element = '';
+                    else
+                        element = matrix[i][j];
+                    result += "<td style='width: 30px; height: 30px; line-height: 30px; text-align: center'>"+element+"</td>";
+
                 }
                 result += "</tr>"
             }
@@ -88,10 +71,9 @@ class Board extends Component {
 
     render() {
         return (
-            <div className="matrix-view" style={{ width: '120px' , margin: 'auto'}}>
+            <div id="board" className="matrix-view" style={{ width: '120px' , margin: 'auto', cursor:'pointer'}}>
                 <h3>Matrix</h3>
                 <table className="matrix">{this.renderMatrix()}</table>
-
             </div>
         );
     }
