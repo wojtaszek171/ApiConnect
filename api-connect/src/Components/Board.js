@@ -24,9 +24,13 @@ class Board extends Component {
                 [0, 0, 0, 0]
             ]
         };
-
     }
-
+    componentWillMount(){
+        window.addEventListener('keydown', this._handleKeyDown, false);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this._handleKeyDown, false);
+    }
     componentDidMount() {
         this.setState({matrix : this.props.newMatrix});
         this.renderMatrix = this.renderMatrix.bind(this);
@@ -36,9 +40,27 @@ class Board extends Component {
             matrix : newProps.newMatrix
         });
         console.log("updateBoard");
-
     }
 
+    _handleKeyDown(event){
+        //console.log(event.keyCode);
+        switch( event.keyCode ) {
+            case 37:
+                console.log("LEFT");
+                break;
+            case 38:
+                console.log("UP");
+                break;
+            case 39:
+                console.log("RIGHT");
+                break;
+            case 40:
+                console.log("DOWN");
+                break;
+            default:
+                break;
+    }
+    }
 
 
 
