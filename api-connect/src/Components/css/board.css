@@ -1,0 +1,7 @@
+.matrix{
+    background: black;
+    color: white;
+}
+.matrix td{
+    border: 2px solid white;
+}

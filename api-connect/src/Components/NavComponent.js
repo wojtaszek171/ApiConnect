@@ -6,6 +6,8 @@ import Wiki from './Wiki.js';
 import GMap from './Map.js';
 import Main from './Main.js';
 import Chuck from './Chuck.js';
+import DragDrop from './DragDrop';
+
 import './css/Nav.css'
 
 import FooterComponent from './FooterComponent.js';
@@ -45,6 +47,7 @@ class NavComponent extends Component {
                                                 <li><NavLink to="/wiki"><a href="#">Wikipedia API</a></NavLink></li>
                                                 <li><NavLink to="/google-map"><a href="#">Google Maps API</a></NavLink></li>
                                                 <li><NavLink to="/chuck"><a href="#">Chuck API</a></NavLink></li>
+                                                <li><NavLink to="/dragdrop"><a href="#">Drag Drop</a></NavLink></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -55,6 +58,7 @@ class NavComponent extends Component {
                                   <Route path="/wiki" component={Wiki}/>
                                   <Route path="/google-map" component={GMap}/>
                                   <Route path="/chuck" component={Chuck}/>
+                                  <Route path="/dragdrop" component={DragDrop}/>
                               </div>
                                 <FooterComponent/>
                             </div>
