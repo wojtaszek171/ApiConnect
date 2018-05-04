@@ -19,6 +19,13 @@ nav a, nav a:hover, nav a:focus{
     margin-left: 40px;
     margin-right:40px;
 }
+
+@media (max-width: 500px) {
+    .content{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
 html, body{
     background-color: #eee;
 }
