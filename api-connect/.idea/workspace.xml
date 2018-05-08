@@ -29,8 +29,8 @@
       <file leaf-file-name="DragDrop2048.test.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DragDrop2048.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+            <state relative-caret-position="125">
+              <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="24" />
               <folding>
                 <element signature="e#0#53#0" expanded="true" />
               </folding>
@@ -311,7 +311,7 @@
       <workItem from="1525243086374" duration="21554000" />
       <workItem from="1525416085621" duration="4195000" />
       <workItem from="1525674488715" duration="4412000" />
-      <workItem from="1525759904766" duration="5059000" />
+      <workItem from="1525759904766" duration="6186000" />
     </task>
     <servers />
   </component>
@@ -330,7 +330,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="219588000" />
+    <option name="totallyTimeSpent" value="220715000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -715,8 +715,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DragDrop2048.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        <state relative-caret-position="125">
+          <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="24" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>
