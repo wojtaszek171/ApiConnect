@@ -1,9 +1,6 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import Chuck from "./Components/Chuck";
-import NavComponent from "./Components/NavComponent";
-import { mount, shallow } from 'enzyme';
-import ReactTestUtils from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
 import chuckApi from "./services/chuck";
 import serializer from 'enzyme-to-json/serializer';
 

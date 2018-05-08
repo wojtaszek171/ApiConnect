@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import chuck from '../services/chuck';
 import Board from "./Board";
 import SwipeReact from 'swipe-react';
 
@@ -59,8 +58,9 @@ class DragDrop2048 extends Component {
     }
 
 
-    componentDidMount() {
-        $("#board").draggable();
+
+    async componentDidMount() {
+        await $("#board").draggable();
     }
 
     renderBoard(){
@@ -199,6 +199,7 @@ class DragDrop2048 extends Component {
                 <h2>Drag/Drop 2048 GAME</h2>
                 <h4>Points : {this.state.points}</h4>
                 <div style={{'touch-action': 'none'}} {...SwipeReact.events}>
+                    <p>On desktop you can drag and drop board</p>
                 {this.renderBoard()}
                 </div>
                 <button onClick={this.newGame}>New Game</button>
